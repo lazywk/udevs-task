@@ -4,6 +4,7 @@ import "./style.scss";
 import { orderStatus, OrderType } from "@/interfaces/orders";
 import { useAppDispatch } from "@/store/store";
 import { updateOrder } from "@/store/orders/orders";
+import DragIcon from "@/components/elements/DragIcon";
 
 export default function OrderCard({
   id,
@@ -19,12 +20,13 @@ export default function OrderCard({
     dispatch(updateOrder({ id, status: val }));
   };
 
-  const handleDragStart = (event) => {
-    event.dataTransfer.setData("text/plain", id);
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
+    event.dataTransfer.setData("text/plain", `${id}`);
   };
 
   return (
     <div className="order-card" draggable onDragStart={handleDragStart}>
+      <DragIcon />
       <div className="order-card__header">
         <p className="order-card__title">ID: {id}</p>
         <div className="order-card__info">
@@ -76,7 +78,7 @@ export default function OrderCard({
         <div className="order-card__bottom">
           <Button size="l" view="outlined-danger" width="max">
             <Icon data={Xmark} />
-            Otmenit
+            Отменить
           </Button>
           <Button
             size="l"
@@ -85,7 +87,7 @@ export default function OrderCard({
             onClick={() => handleAccept("preparation")}
           >
             <Icon data={Check} />
-            Prinyat
+            Принят
           </Button>
         </div>
       ) : (
@@ -101,7 +103,7 @@ export default function OrderCard({
             onClick={() => handleAccept("ready")}
           >
             <Icon data={Check} />
-            Gatov
+            Гатов
           </Button>
         </div>
       ) : (
@@ -117,7 +119,7 @@ export default function OrderCard({
             onClick={() => handleAccept("shipping")}
           >
             <Icon data={Check} />
-            Gatov
+            Завершить
           </Button>
         </div>
       ) : (

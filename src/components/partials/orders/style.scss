@@ -41,7 +41,7 @@
 .order-list__group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .order-card {
@@ -50,6 +50,7 @@
   background-color: white;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .order-card__header {
@@ -128,4 +129,9 @@
   padding: 7px 10px;
   display: flex;
   gap: 10px;
+}
+
+.widget-grid__drag-icon {
+  transform: rotateZ(90deg);
+  margin: 4px auto 0;
 }

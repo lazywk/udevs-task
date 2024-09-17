@@ -10,12 +10,12 @@ export default function OrdersList({ status }: OrderListProps) {
   const { orders } = useAppSelector((state) => state.orders);
   const dispatch = useAppDispatch();
 
-  const handleDragOver = (event) => {
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   };
 
-  const handleDrop = (event) => {
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const rowData = event.dataTransfer.getData("text/plain");
     return dispatch(updateOrder({ id: Number(rowData), status }));
