@@ -19,8 +19,12 @@ export default function OrderCard({
     dispatch(updateOrder({ id, status: val }));
   };
 
+  const handleDragStart = (event) => {
+    event.dataTransfer.setData("text/plain", id);
+  };
+
   return (
-    <div className="order-card" draggable>
+    <div className="order-card" draggable onDragStart={handleDragStart}>
       <div className="order-card__header">
         <p className="order-card__title">ID: {id}</p>
         <div className="order-card__info">
