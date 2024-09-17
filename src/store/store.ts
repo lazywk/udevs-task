@@ -7,11 +7,14 @@ import theme from './theme'
 import dashboard from './dashboard/dashboard'
 import { dashboardApi } from './dashboard/dashboardApi'
 
+import orders from './orders/orders'
+
 export const store = configureStore({
     reducer: {
         [dashboardApi.reducerPath]: dashboardApi.reducer,
         theme,
         dashboard,
+        orders
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(

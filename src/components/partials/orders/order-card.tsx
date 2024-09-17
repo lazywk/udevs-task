@@ -1,64 +1,124 @@
 import { Button, Icon } from "@gravity-ui/uikit";
-import { Check, Xmark, House, Clock } from "@gravity-ui/icons";
+import { Check, Xmark, House, Clock, PersonWorker } from "@gravity-ui/icons";
 import "./style.scss";
+import { orderStatus, OrderType } from "@/interfaces/orders";
+import { useAppDispatch } from "@/store/store";
+import { updateOrder } from "@/store/orders/orders";
 
-type Props = {};
+export default function OrderCard({
+  id,
+  price,
+  payment,
+  status,
+  time,
+  details,
+}: OrderType) {
+  const dispatch = useAppDispatch();
 
-export default function OrderCard({}: Props) {
+  const handleAccept = (val: orderStatus) => {
+    dispatch(updateOrder({ id, status: val }));
+  };
+
   return (
     <div className="order-card" draggable>
       <div className="order-card__header">
-        <p className="order-card__title">ID: 23452</p>
+        <p className="order-card__title">ID: {id}</p>
         <div className="order-card__info">
-          <ins className="order-card__price">300 560 sum</ins>
-          <span className="order-card__payment"></span>
+          <ins className="order-card__price">{price} sum</ins>
+          <span
+            className={`order-card__payment order-card__payment--${payment}`}
+          ></span>
           <span className="order-card__status">
-            <House fontSize={"12px"} />
+            {status === "new" || status === "preparation" ? (
+              <House fontSize={"12px"} />
+            ) : status === "ready" ? (
+              <PersonWorker fontSize={"12px"} />
+            ) : (
+              <House fontSize={"12px"} />
+            )}
           </span>
         </div>
       </div>
 
       <ul className="order-card__list order-card-list">
-        <li className="order-card-list__item">
-          <span className="order-card-list__count">3 x </span>
-          <div className="order-card-list__info">
-            <span className="order-card-list__name">Gambuger</span>
+        {details.map((el, i) => (
+          <li key={i} className="order-card-list__item">
+            <span className="order-card-list__count">{el.count} x </span>
+            <div className="order-card-list__info">
+              <span className="order-card-list__name">{el.name}</span>
 
-            <ul className="order-card-sub-list">
-              <li className="order-card-sub-list__item">S sirom</li>
-              <li className="order-card-sub-list__item">Bez luka</li>
-            </ul>
-          </div>
-        </li>
-
-        <li className="order-card-list__item">
-          <span className="order-card-list__count">3 x </span>
-          <div className="order-card-list__info">
-            <span className="order-card-list__name">Gambuger</span>
-
-            <ul className="order-card-sub-list">
-              <li className="order-card-sub-list__item">S sirom</li>
-              <li className="order-card-sub-list__item">Bez luka</li>
-            </ul>
-          </div>
-        </li>
+              {el?.comments?.length ? (
+                <ul className="order-card-sub-list">
+                  {el.comments.map((comm, j) => (
+                    <li key={j} className="order-card-sub-list__item">
+                      {comm}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                ""
+              )}
+            </div>
+          </li>
+        ))}
       </ul>
 
       <div className="order-card__time">
         <Clock />
-        <p>15:22</p>
+        <p>{time}</p>
       </div>
 
-      <div className="order-card__bottom">
-        <Button size="l" view="outlined-danger" width="max">
-          <Icon data={Xmark} />
-          Otmenit
-        </Button>
-        <Button size="l" view="outlined-info" width="max">
-          <Icon data={Check} />
-          Prinyat
-        </Button>
-      </div>
+      {status === "new" ? (
+        <div className="order-card__bottom">
+          <Button size="l" view="outlined-danger" width="max">
+            <Icon data={Xmark} />
+            Otmenit
+          </Button>
+          <Button
+            size="l"
+            view="outlined-info"
+            width="max"
+            onClick={() => handleAccept("preparation")}
+          >
+            <Icon data={Check} />
+            Prinyat
+          </Button>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {status === "preparation" ? (
+        <div className="order-card__bottom">
+          <Button
+            size="l"
+            view="outlined-info"
+            width="max"
+            onClick={() => handleAccept("ready")}
+          >
+            <Icon data={Check} />
+            Gatov
+          </Button>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {status === "ready" ? (
+        <div className="order-card__bottom">
+          <Button
+            size="l"
+            view="outlined-info"
+            width="max"
+            onClick={() => handleAccept("shipping")}
+          >
+            <Icon data={Check} />
+            Gatov
+          </Button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
