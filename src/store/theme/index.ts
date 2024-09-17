@@ -15,10 +15,6 @@ export const appThemeSlice = createSlice({
     name: 'theme',
     initialState,
     reducers: {
-        setTheme: (state, action) => {
-            localStorage.setItem('theme', action.payload)
-            state.theme = action.payload
-        },
         collepseMenu: (state) => {
             if (state.menuType === 'full') {
                 localStorage.setItem('menuType', 'collepse')
@@ -32,7 +28,6 @@ export const appThemeSlice = createSlice({
 })
 
 export const {
-    setTheme,
     collepseMenu
 } = appThemeSlice.actions
 
