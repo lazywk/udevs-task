@@ -13,7 +13,7 @@
 
 .order-list-header {
   background-color: red;
-  padding: 10px;
+  padding: 15px 10px;
   color: white;
 }
 .header-bg-new {
@@ -32,10 +32,95 @@
   background-color: cadetblue;
 }
 
-.order-list-item {
+.order-list__item {
+  padding: 10px;
+  background-color: #eeeeee;
+}
+
+.order-list__group {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 10px;
-  background-color: #eeeeee;
+}
+
+.order-card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.order-card__header {
+  padding: 7px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.order-card__title {
+  font-weight: 700;
+}
+
+.order-card__info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.order-card__price {
+  color: lightskyblue;
+  text-decoration: none;
+}
+
+.order-card__payment {
+  display: block;
+  background-image: url("https://birja.soff.uz/images/payme-logo.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30px;
+  height: 30px;
+}
+
+.order-card-list {
+  display: flex;
+  flex-direction: column;
+  padding: 7px 10px;
+  gap: 5px;
+}
+
+.order-card-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.order-card-sub-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.order-card-sub-list__item {
+  font-weight: 400;
+  color: gray;
+}
+
+.order-card__time {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: flex-end;
+  padding: 0 10px 7px;
+  color: lightskyblue;
+}
+
+.order-card__bottom {
+  border-top: 1px solid #ccc;
+  padding: 7px 10px;
+  display: flex;
+  gap: 10px;
 }
