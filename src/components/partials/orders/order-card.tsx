@@ -1,20 +1,15 @@
 import { Button, Icon } from "@gravity-ui/uikit";
-import { Check, Xmark, House, Clock, PersonWorker } from "@gravity-ui/icons";
+import { Check, Xmark, Clock } from "@gravity-ui/icons";
 import "./style.scss";
 import { orderStatus, OrderType } from "@/interfaces/orders";
 import { useAppDispatch } from "@/store/store";
 import { updateOrder } from "@/store/orders/orders";
 import DragIcon from "@/components/elements/DragIcon";
+import OrderCardHeader from "./order-card-header";
 
-export default function OrderCard({
-  id,
-  price,
-  payment,
-  status,
-  time,
-  details,
-}: OrderType) {
+export default function OrderCard(props: OrderType) {
   const dispatch = useAppDispatch();
+  const { id, status, time, details } = props;
 
   const handleAccept = (val: orderStatus) => {
     dispatch(updateOrder({ id, status: val }));
@@ -27,24 +22,7 @@ export default function OrderCard({
   return (
     <div className="order-card" draggable onDragStart={handleDragStart}>
       <DragIcon />
-      <div className="order-card__header">
-        <p className="order-card__title">ID: {id}</p>
-        <div className="order-card__info">
-          <ins className="order-card__price">{price} sum</ins>
-          <span
-            className={`order-card__payment order-card__payment--${payment}`}
-          ></span>
-          <span className="order-card__status">
-            {status === "new" || status === "preparation" ? (
-              <House fontSize={"12px"} />
-            ) : status === "ready" ? (
-              <PersonWorker fontSize={"12px"} />
-            ) : (
-              <House fontSize={"12px"} />
-            )}
-          </span>
-        </div>
-      </div>
+      <OrderCardHeader {...props} />
 
       <ul className="order-card__list order-card-list">
         {details.map((el, i) => (

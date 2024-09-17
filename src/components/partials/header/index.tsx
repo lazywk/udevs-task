@@ -18,6 +18,8 @@ export default function Header({}: Props) {
       <Button view="flat" size="l" onClick={toggleMenu}>
         <Icon data={Bars} size={18} />
       </Button>
+
+      <h5>Сегодняшние заказы</h5>
     </div>
   );
 }

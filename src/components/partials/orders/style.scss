@@ -18,19 +18,19 @@
   color: white;
 }
 .header-bg-new {
-  background-color: blue;
+  background-color: #1074f4;
 }
 
 .header-bg-preparation {
-  background-color: orange;
+  background-color: #ffc41c;
 }
 
 .header-bg-ready {
-  background-color: green;
+  background-color: #21c348;
 }
 
 .header-bg-shipping {
-  background-color: cadetblue;
+  background-color: #20c49c;
 }
 
 .order-list__item {
@@ -63,6 +63,7 @@
 
 .order-card__title {
   font-weight: 700;
+  font-size: 20px;
 }
 
 .order-card__info {
