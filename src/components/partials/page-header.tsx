@@ -1,17 +1,44 @@
-import React from "react"
+import "./style.scss";
+import { Icon, TextInput } from "@gravity-ui/uikit";
+import { Magnifier } from "@gravity-ui/icons";
+import { Select } from "@gravity-ui/uikit";
+import { useAppDispatch } from "@/store/store";
+import { searchOrder } from "@/store/orders/orders";
 
-type Props = {
-    title: string
-    children?: React.ReactNode | undefined
-}
+export default function PageHeader() {
+  const dispatch = useAppDispatch();
 
-export default function PageHeader({ title, children }: Props) {
-    return (
-        <div className="between" style={{ marginBottom: '15px', display: 'flex', alignItems: 'center' }}>
-            <h2 className="page-title m-0">
-                {title}
-            </h2>
-            {children}
-        </div>
-    )
+  const handleSearch = (value: string) => {
+    dispatch(searchOrder(value));
+  };
+
+  return (
+    <div className="site-header">
+      <TextInput
+        placeholder="Поиск по ID"
+        size="l"
+        type="number"
+        className="search-input"
+        onChange={(e) => handleSearch(e.target.value)}
+        leftContent={
+          <div className="search-icon">
+            <Icon data={Magnifier} />
+          </div>
+        }
+      />
+
+      <div>
+        <Select
+          size="l"
+          defaultValue={["val_1"]}
+          options={[
+            { value: "val_1", content: `Всего: ${434}` },
+            { value: "val_2", content: `Фильтр 1` },
+            { value: "val_3", content: `Фильтр 2` },
+            { value: "val_4", content: `Фильтр 3` },
+          ]}
+        />
+      </div>
+    </div>
+  );
 }

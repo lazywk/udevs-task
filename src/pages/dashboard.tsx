@@ -1,15 +1,14 @@
-
-import DashboardMain from '@/views/dashboard/dashboard-main';
-import React from 'react';
+import PageHeader from "@/components/partials/page-header";
+import DashboardMain from "@/views/dashboard/dashboard-main";
+import React from "react";
 
 const Dashboard: React.FC = () => {
-
-    return (
-        <div>
-            <DashboardMain />
-        </div>
-    );
+  return (
+    <div>
+      <PageHeader />
+      <DashboardMain />
+    </div>
+  );
 };
 
-
-export default Dashboard
+export default Dashboard;

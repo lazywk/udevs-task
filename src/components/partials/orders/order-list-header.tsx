@@ -10,7 +10,7 @@ export default function OrderListHeader({
     new: "Новый",
     preparation: "подготовка",
     ready: "готов",
-    shipping: "курьер ва путь",
+    shipping: "курьер в путь",
   };
 
   return (

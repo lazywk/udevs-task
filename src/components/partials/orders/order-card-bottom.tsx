@@ -47,7 +47,7 @@ export default function OrderCardBottom({ status, id }: Props) {
             onClick={() => handleAccept("ready")}
           >
             <Icon data={Check} />
-            Гатов
+            Готовo
           </Button>
         </div>
       ) : (

@@ -1,0 +1,17 @@
+.site-header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-icon {
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1074f4;
+}
+
+.search-input {
+  max-width: 260px;
+}

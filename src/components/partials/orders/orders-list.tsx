@@ -9,6 +9,7 @@ import { updateOrder } from "@/store/orders/orders";
 export default function OrdersList({ status }: OrderListProps) {
   const { orders } = useAppSelector((state) => state.orders);
   const dispatch = useAppDispatch();
+  const myOrders = orders.filter((el) => el.status === status);
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -23,14 +24,12 @@ export default function OrdersList({ status }: OrderListProps) {
 
   return (
     <div className="order-list" onDrop={handleDrop} onDragOver={handleDragOver}>
-      <OrderListHeader count={5} status={status} />
+      <OrderListHeader count={myOrders.length} status={status} />
       <div className="order-list__item">
         <div className="order-list__group">
-          {orders
-            .filter((el) => el.status === status)
-            .map((ord, i) => (
-              <OrderCard key={i} {...ord} />
-            ))}
+          {myOrders.map((ord, i) => (
+            <OrderCard key={i} {...ord} />
+          ))}
         </div>
       </div>
     </div>

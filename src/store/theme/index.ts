@@ -8,7 +8,7 @@ const menuType: any = localStorage.getItem('menuType')
 const initialState: AppStateTypes = {
     theme: defaultTheme ? defaultTheme : 'light',
     defaultTheme: 'light',
-    menuType: menuType || 'full'
+    menuType: menuType || 'collepse'
 }
 
 export const appThemeSlice = createSlice({
